@@ -57,7 +57,9 @@ function getFilesInDirectory(dir, ext) {
 }
 //__filename
 //Running application without any parameter prints a simple help message
-if(process.argv.length<5)
+const minNumOfArgs = 5;
+
+if(process.argv.length<minNumOfArgs)
 {
     console.log("USAGE: node search [EXT] [TEXT]");
     process.exit(-1);
