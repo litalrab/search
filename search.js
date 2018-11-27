@@ -1,13 +1,10 @@
 const path = require('path');
 const fs = require('fs');
 
-function searchFilesInDirectory(dir, ext, filter) {
-    if (!fs.existsSync(dir)) {
-        console.log(`Specified directory: ${dir} does not exist`);
-        return;
-    }
+function searchFilesInDirectory( ext, filter) {
 
-    const filesInDir = getFilesInDirectory(dir, '\.' + ext);
+    var cwd=process.cwd();
+    const filesInDir = getFilesInDirectory(cwd, '\.' + ext);
     var fileFound='false';
 
     filesInDir.forEach(file => {
@@ -23,7 +20,7 @@ function searchFilesInDirectory(dir, ext, filter) {
 
     if(fileFound=='false')
     {
-        console.log(`No file was found `);
+        console.log(`No file was found`);
     }
 }
 
@@ -57,16 +54,16 @@ function getFilesInDirectory(dir, ext) {
 }
 //__filename
 //Running application without any parameter prints a simple help message
-const minNumOfArgs = 5;
+const NumOfArgs = 4;
 
-if(process.argv.length<minNumOfArgs)
+if(process.argv.length!=NumOfArgs)
 {
     console.log("USAGE: node search [EXT] [TEXT]");
-    process.exit(-1);
+   process.exit(-1);
         
 
 }
 else{
-    searchFilesInDirectory(process.argv[2], process.argv[3], process.argv[4]);
+    searchFilesInDirectory(process.argv[2], process.argv[3]);
 
 }
